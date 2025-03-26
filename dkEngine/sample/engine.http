@@ -1,0 +1,36 @@
+### healthcheck
+GET http://{{host}}/_ping
+
+### list network
+GET http://{{host}}/networks
+Accept: application/json
+
+>> getNetworks.json
+
+### list containers
+GET http://{{host}}/containers/json
+Accept: application/json
+
+#>> getContainers.json
+
+### pull image
+POST http://{{host}}/images/create?fromImage=docker.d3v-friends.com/smsv3-sender-api-dev:latest
+Accept: application/json
+
+>> pullImage.json
+
+
+### exec
+POST http://{{host}}/containers/8126d522d9e24772634d6effd2d8e16342f38760cd842c98e3b0c2c94185fb18/exec
+Content-Type: application/json
+
+{
+    "Cmd": [
+        "-it", "mongodb_v3_01",
+        "-port", "27017",
+        "mongosh",
+        "-u", "root",
+        "-p", "dev!123",
+        "--eval", "\"rs.initiate({_id: \"v3\", members: [{_id: 0, host: \"mongodb_v3_01\"}]});\""
+    ]
+}

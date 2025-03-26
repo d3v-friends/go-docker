@@ -1,0 +1,227 @@
+[
+  {
+    "Id": "5fb53b5977705ae5d8208e1f1a66113fd4989481f690fe07aee7f672123fed81",
+    "Names": [
+      "/numberApi"
+    ],
+    "Image": "docker.d3v-friends.com/smsv3-number-api-dev:latest",
+    "ImageID": "sha256:21891393ed3513a088662c866387a29a93b2783c9a398fec0e584b5213d93354",
+    "Command": "/app",
+    "Created": 1735740199,
+    "Ports": [
+      {
+        "IP": "0.0.0.0",
+        "PrivatePort": 10001,
+        "PublicPort": 10001,
+        "Type": "tcp"
+      },
+      {
+        "IP": "::",
+        "PrivatePort": 10001,
+        "PublicPort": 10001,
+        "Type": "tcp"
+      }
+    ],
+    "Labels": {
+      "com.docker.compose.config-hash": "74a381598ab56517fb0182e3cbbda2fb883f9c081eea1bba0a6108f2f1908c33",
+      "com.docker.compose.container-number": "1",
+      "com.docker.compose.depends_on": "",
+      "com.docker.compose.image": "sha256:21891393ed3513a088662c866387a29a93b2783c9a398fec0e584b5213d93354",
+      "com.docker.compose.oneoff": "False",
+      "com.docker.compose.project": "ec2-user",
+      "com.docker.compose.project.config_files": "/home/ec2-user/docker-compose.yml",
+      "com.docker.compose.project.working_dir": "/home/ec2-user",
+      "com.docker.compose.replace": "96a681d86f2c78ebe5cab3078b04da5b65273a1c985b9016fe80931ccb1599fb",
+      "com.docker.compose.service": "numberApi",
+      "com.docker.compose.version": "2.32.1"
+    },
+    "State": "running",
+    "Status": "Up About an hour",
+    "HostConfig": {
+      "NetworkMode": "ec2-user_local"
+    },
+    "NetworkSettings": {
+      "Networks": {
+        "ec2-user_local": {
+          "IPAMConfig": null,
+          "Links": null,
+          "Aliases": null,
+          "MacAddress": "02:42:ac:12:00:03",
+          "NetworkID": "a8ab01fe0574e0ad4d9117ae5868351e28cac7caf42a6972b798ce5988f3fd92",
+          "EndpointID": "6e1bc77538cdd616227cfe6d141fdd372159d9c092918fc05e505fdddbca97cd",
+          "Gateway": "172.18.0.1",
+          "IPAddress": "172.18.0.3",
+          "IPPrefixLen": 16,
+          "IPv6Gateway": "",
+          "GlobalIPv6Address": "",
+          "GlobalIPv6PrefixLen": 0,
+          "DriverOpts": null,
+          "DNSNames": null
+        }
+      }
+    },
+    "Mounts": []
+  },
+  {
+    "Id": "c33fc689850f92004ee3533acda505bfbe996092ff9454804cbb3389faf52691",
+    "Names": [
+      "/mongo7"
+    ],
+    "Image": "docker.d3v-friends.com/mongo:7.0.5",
+    "ImageID": "sha256:82496ea378985b8dd897af0ea2c38a4e3afd1520b03901acc8b4bb0762a4d700",
+    "Command": "docker-entrypoint.sh mongod --bind_ip_all --keyFile /mongodb.key --wiredTigerCacheSizeGB 2",
+    "Created": 1735736763,
+    "Ports": [
+      {
+        "IP": "0.0.0.0",
+        "PrivatePort": 27017,
+        "PublicPort": 27017,
+        "Type": "tcp"
+      },
+      {
+        "IP": "::",
+        "PrivatePort": 27017,
+        "PublicPort": 27017,
+        "Type": "tcp"
+      }
+    ],
+    "Labels": {
+      "com.docker.compose.config-hash": "3fcf48865337819a93a32ecf043a723956efca46f0c6edb30d91e8a3fafe1058",
+      "com.docker.compose.container-number": "1",
+      "com.docker.compose.depends_on": "",
+      "com.docker.compose.image": "sha256:82496ea378985b8dd897af0ea2c38a4e3afd1520b03901acc8b4bb0762a4d700",
+      "com.docker.compose.oneoff": "False",
+      "com.docker.compose.project": "ec2-user",
+      "com.docker.compose.project.config_files": "/home/ec2-user/docker-compose.yml",
+      "com.docker.compose.project.working_dir": "/home/ec2-user",
+      "com.docker.compose.service": "mongo7",
+      "com.docker.compose.version": "2.32.1",
+      "org.opencontainers.image.ref.name": "ubuntu",
+      "org.opencontainers.image.version": "22.04"
+    },
+    "State": "running",
+    "Status": "Up About an hour",
+    "HostConfig": {
+      "NetworkMode": "ec2-user_local"
+    },
+    "NetworkSettings": {
+      "Networks": {
+        "ec2-user_local": {
+          "IPAMConfig": null,
+          "Links": null,
+          "Aliases": null,
+          "MacAddress": "02:42:ac:12:00:02",
+          "NetworkID": "a8ab01fe0574e0ad4d9117ae5868351e28cac7caf42a6972b798ce5988f3fd92",
+          "EndpointID": "f3bc0a1b0addbb4301bdeac8634126b712f3c90d94ef58aac2cf3c1634a8022d",
+          "Gateway": "172.18.0.1",
+          "IPAddress": "172.18.0.2",
+          "IPPrefixLen": 16,
+          "IPv6Gateway": "",
+          "GlobalIPv6Address": "",
+          "GlobalIPv6PrefixLen": 0,
+          "DriverOpts": null,
+          "DNSNames": null
+        }
+      }
+    },
+    "Mounts": [
+      {
+        "Type": "volume",
+        "Name": "6db4c7e8340d3d0ce62de423379a0680ec0286e5373b0accb80c32b3bc86487b",
+        "Source": "",
+        "Destination": "/data/configdb",
+        "Driver": "local",
+        "Mode": "",
+        "RW": true,
+        "Propagation": ""
+      },
+      {
+        "Type": "volume",
+        "Name": "bcee05baadcb3b36e8e78fd70c783e6022fda3c3f3cf9c823a32f99883655ac9",
+        "Source": "",
+        "Destination": "/data/db",
+        "Driver": "local",
+        "Mode": "",
+        "RW": true,
+        "Propagation": ""
+      }
+    ]
+  },
+  {
+    "Id": "b1cdbaad80658bc29b004e4331e8cc798dc9109ad2ca4fb717f23780829ffcae",
+    "Names": [
+      "/mysql8"
+    ],
+    "Image": "mysql:8.4.3",
+    "ImageID": "sha256:3818a28b4a67a9efab3547df8a292de847636d5903f7705d4ccbe1d281b20133",
+    "Command": "docker-entrypoint.sh mysqld",
+    "Created": 1735736763,
+    "Ports": [
+      {
+        "PrivatePort": 33060,
+        "Type": "tcp"
+      },
+      {
+        "IP": "0.0.0.0",
+        "PrivatePort": 3306,
+        "PublicPort": 3306,
+        "Type": "tcp"
+      },
+      {
+        "IP": "::",
+        "PrivatePort": 3306,
+        "PublicPort": 3306,
+        "Type": "tcp"
+      }
+    ],
+    "Labels": {
+      "com.docker.compose.config-hash": "f8538974cad96687a37eae718b41c15fb721de2f1a5dbe1518676562ab6238f7",
+      "com.docker.compose.container-number": "1",
+      "com.docker.compose.depends_on": "",
+      "com.docker.compose.image": "sha256:3818a28b4a67a9efab3547df8a292de847636d5903f7705d4ccbe1d281b20133",
+      "com.docker.compose.oneoff": "False",
+      "com.docker.compose.project": "ec2-user",
+      "com.docker.compose.project.config_files": "/home/ec2-user/docker-compose.yml",
+      "com.docker.compose.project.working_dir": "/home/ec2-user",
+      "com.docker.compose.service": "mysql8",
+      "com.docker.compose.version": "2.32.1"
+    },
+    "State": "running",
+    "Status": "Up About an hour",
+    "HostConfig": {
+      "NetworkMode": "ec2-user_local"
+    },
+    "NetworkSettings": {
+      "Networks": {
+        "ec2-user_local": {
+          "IPAMConfig": null,
+          "Links": null,
+          "Aliases": null,
+          "MacAddress": "02:42:ac:12:00:04",
+          "NetworkID": "a8ab01fe0574e0ad4d9117ae5868351e28cac7caf42a6972b798ce5988f3fd92",
+          "EndpointID": "936dac4ddecae9a535df619353f2b9e5155400f57cc1fcc1ffa49ef09e786b89",
+          "Gateway": "172.18.0.1",
+          "IPAddress": "172.18.0.4",
+          "IPPrefixLen": 16,
+          "IPv6Gateway": "",
+          "GlobalIPv6Address": "",
+          "GlobalIPv6PrefixLen": 0,
+          "DriverOpts": null,
+          "DNSNames": null
+        }
+      }
+    },
+    "Mounts": [
+      {
+        "Type": "volume",
+        "Name": "4393e6bb4597a79a01d8434c55a2c337a73e5597886154787e12174c9a3d692b",
+        "Source": "",
+        "Destination": "/var/lib/mysql",
+        "Driver": "local",
+        "Mode": "",
+        "RW": true,
+        "Propagation": ""
+      }
+    ]
+  }
+]

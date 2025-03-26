@@ -1,0 +1,22 @@
+### healthcheck
+GET https://{{registry}}/
+Content-Type: application/json
+
+### health check
+GET https://{{registryUsername}}:{{registryPassword}}@{{registry}}/v2
+Content-Type: application/json
+
+### list repository
+GET https://{{registry}}/v2/_catalog
+Content-Type: application/json
+Authorization: Basic {{registryUsername}} {{registryPassword}}
+
+### list tags
+GET https://{{registry}}/v2/{{imgName}}/tags/list
+Content-Type: application/json
+Authorization: Basic {{registryUsername}} {{registryPassword}}
+
+### delete image
+DELETE https://{{registry}}/v2/{{imgName}}/manifests/{{imgTag}}
+Content-Type: application/json
+Authorization: Basic {{registryUsername}} {{registryPassword}}

@@ -1,0 +1,12 @@
+[
+  {
+    "status": "Pulling from smsv3-sender-api-dev",
+    "id": "latest"
+  },
+  {
+    "status": "Digest: sha256:52ecbdc411cd44dda1bdb98af676dc73f6f193231ef7513842193370d1558ad9"
+  },
+  {
+    "status": "Status: Image is up to date for docker.d3v-friends.com/smsv3-sender-api-dev:latest"
+  }
+]
