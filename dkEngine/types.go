@@ -3,6 +3,7 @@ package dkEngine
 import (
 	"encoding/base64"
 	"encoding/json"
+	"github.com/d3v-friends/go-tools/fnPointer"
 	"strings"
 	"time"
 )
@@ -172,6 +173,23 @@ type ContainerInspection struct {
 	RestartCount    int64                               `json:"RestartCount"`
 	State           *ContainerInspectionState           `json:"State"`
 	Mounts          []*ContainerInspectionMount         `json:"Mounts"`
+}
+
+func (x *ContainerInspection) Env() (m map[string]string) {
+	m = make(map[string]string)
+	if fnPointer.IsNil(x.Config) {
+		return
+	}
+
+	for _, s := range x.Config.Env {
+		var ls = strings.Split(s, "=")
+		if len(ls) != 2 {
+			continue
+		}
+		m[ls[0]] = ls[1]
+	}
+
+	return
 }
 
 type ContainerInspectionConfig struct {
