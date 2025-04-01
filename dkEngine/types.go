@@ -154,25 +154,63 @@ type PortBindings map[string][]*PortBinding
 // 추후 다른 내용이 필요시 다음 문서에서 찾아보기
 // https://docker-docs.uclv.cu/engine/api/v1.40/#operation/ContainerInspect
 type ContainerInspection struct {
-	AppArmorProfile string                              `json:"AppArmorProfile"`
-	Args            []string                            `json:"Args"`
-	Config          *ContainerInspectionConfig          `json:"Config"`
-	Created         *time.Time                          `json:"Created"`
-	Driver          string                              `json:"Driver"`
-	ExecIDs         []string                            `json:"ExecIDs"`
-	HostConfig      *ContainerInspectionHostConfig      `json:"HostConfig"`
-	HostnamePath    string                              `json:"HostnamePath"`
-	HostPath        string                              `json:"HostPath"`
-	LogPath         string                              `json:"LogPath"`
-	Image           string                              `json:"Image"`
-	MountLabel      string                              `json:"MountLabel"`
-	Name            string                              `json:"ContainerName"`
-	NetworkSettings *ContainerInspectionNetworkSettings `json:"NetworkSettings"`
-	Path            string                              `json:"Path"`
-	ProcessLabel    string                              `json:"ProcessLabel"`
-	RestartCount    int64                               `json:"RestartCount"`
-	State           *ContainerInspectionState           `json:"State"`
-	Mounts          []*ContainerInspectionMount         `json:"Mounts"`
+	Id             string                     `json:"Id"`
+	Created        *string                    `json:"Created"`
+	Path           string                     `json:"Path"`
+	Args           []string                   `json:"Args"`
+	State          *ContainerInspectionState  `json:"State"`
+	Image          string                     `json:"Image"`
+	ResolvConfPath string                     `json:"ResolvConfPath"`
+	HostnamePath   string                     `json:"HostnamePath"`
+	HostsPath      string                     `json:"HostsPath"`
+	LogPath        string                     `json:"LogPath"`
+	Name           string                     `json:"Name"`
+	RestartCount   int                        `json:"RestartCount"`
+	Driver         string                     `json:"Driver"`
+	Platform       string                     `json:"Platform"`
+	MountLabel     string                     `json:"MountLabel"`
+	ProcessLabel   string                     `json:"ProcessLabel"`
+	Config         *ContainerInspectionConfig `json:"Config"`
+}
+
+type ContainerInspectionConfig struct {
+	Hostname     string   `json:"Hostname"`
+	Domainname   string   `json:"Domainname"`
+	User         string   `json:"User"`
+	AttachStdin  bool     `json:"AttachStdin"`
+	AttachStdout bool     `json:"AttachStdout"`
+	AttachStderr bool     `json:"AttachStderr"`
+	Tty          bool     `json:"Tty"`
+	OpenStdin    bool     `json:"OpenStdin"`
+	StdinOnce    bool     `json:"StdinOnce"`
+	Env          []string `json:"Env"`
+	Cmd          []string `json:"Cmd"`
+}
+
+type ContainerInspectionState struct {
+	Status     string                          `json:"Status"`
+	Running    bool                            `json:"Running"`
+	Paused     bool                            `json:"Paused"`
+	Restarting bool                            `json:"Restarting"`
+	OOMKilled  bool                            `json:"OOMKilled"`
+	Dead       bool                            `json:"Dead"`
+	Pid        int                             `json:"Pid"`
+	ExitCode   int                             `json:"ExitCode"`
+	Error      string                          `json:"Error"`
+	StartedAt  string                          `json:"StartedAt"`
+	FinishedAt string                          `json:"FinishedAt"`
+	Health     *ContainerInspectionStateHealth `json:"Health"`
+}
+
+type ContainerInspectionStateHealth struct {
+	Status        string `json:"Status"`
+	FailingStreak int    `json:"FailingStreak"`
+	Log           []struct {
+		Start    string `json:"Start"`
+		End      string `json:"End"`
+		Output   string `json:"Output"`
+		ExitCode int    `json:"ExitCode"`
+	} `json:"Log"`
 }
 
 func (x *ContainerInspection) Env() (m map[string]string) {
@@ -191,52 +229,6 @@ func (x *ContainerInspection) Env() (m map[string]string) {
 
 	return
 }
-
-type ContainerInspectionConfig struct {
-	AttachStderr    bool                         `json:"AttachStderr"`
-	AttachStdin     bool                         `json:"AttachStdin"`
-	AttachStdout    bool                         `json:"AttachStdout"`
-	Cmd             []string                     `json:"Cmd"`
-	DomainName      string                       `json:"Domainname"`
-	Env             []string                     `json:"RabbitMqEnv"`
-	Healthcheck     map[string][]string          `json:"Healthcheck"`
-	Hostname        string                       `json:"Hostname"`
-	Image           string                       `json:"Image"`
-	Labels          map[string]string            `json:"Labels"`
-	MacAddress      string                       `json:"MacAddress"`
-	NetworkDisabled bool                         `json:"NetworkDisabled"`
-	OpenStdin       bool                         `json:"OpenStdin"`
-	StdinOnce       bool                         `json:"StdinOnce"`
-	TTY             bool                         `json:"Tty"`
-	User            string                       `json:"User"`
-	Volumes         map[string]map[string]string `json:"Volumes"`
-	WorkingDir      string                       `json:"WorkingDir"`
-	StopSignal      string                       `json:"StopSignal"`
-	StopTimeout     int64                        `json:"StopTimeout"`
-}
-
-type ContainerInspectionHostConfig struct {
-	RestartPolicy *ContainerInspectionHostConfigRestartPolicy `json:"RestartPolicy"`
-	LogConfig     *ContainerInspectionHostConfigLogConfig     `json:"LogConfig"`
-}
-
-type ContainerInspectionHostConfigRestartPolicy struct {
-	MaximumRetryCount int64  `json:"MaximumRetryCount"`
-	Name              string `json:"ContainerName"`
-}
-type ContainerInspectionHostConfigLogConfig struct {
-	Type string `json:"Type"`
-}
-
-type ContainerInspectionNetworkSettings struct{}
-
-type ContainerInspectionState struct {
-	Running   bool       `json:"Running"`
-	StartedAt *time.Time `json:"StartedAt,omitempty"`
-	Status    string     `json:"Status"`
-}
-
-type ContainerInspectionMount struct{}
 
 /* ------------------------------------------------------------------------------------------------------------ */
 
