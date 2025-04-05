@@ -1,8 +1,8 @@
 module github.com/d3v-friends/go-docker
 
-go 1.24.1
+go 1.23.8
 
-require github.com/d3v-friends/go-tools v1.0.3
+require github.com/d3v-friends/go-tools v1.0.6
 
 require (
 	github.com/pkg/errors v0.9.1 // indirect
