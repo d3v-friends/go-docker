@@ -46,8 +46,9 @@ func QueryNetworks(
 /* ------------------------------------------------------------------------------------------------------------ */
 
 type CreateNetworkRequest struct {
-	Name   string `json:"name"`
-	Driver string `json:"driver"`
+	Name     string `json:"name"`
+	Driver   string `json:"driver"`
+	Internal bool   `json:"internal"`
 }
 
 type CreateNetworkResponse struct {
@@ -59,11 +60,13 @@ func CreateNetwork(
 	host string,
 	name string,
 	driver string,
+	internal bool,
 ) (res *CreateNetworkResponse, err error) {
 	var body []byte
 	if body, err = json.Marshal(&CreateNetworkRequest{
-		Name:   name,
-		Driver: driver,
+		Name:     name,
+		Driver:   driver,
+		Internal: internal,
 	}); err != nil {
 		return
 	}

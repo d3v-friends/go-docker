@@ -45,6 +45,8 @@ kill -9 [PID]
 # docker-registry api
 
 * https://docker-docs.uclv.cu/registry/spec/api/
+ 
 
+# docker 컨테이너 내부에서 호스트 머신 접속하기
+https://stackoverflow.com/questions/71668469/how-do-i-access-an-api-on-my-host-machine-from-a-docker-container
 
- 있도록 최대한 잔무가 없도록 조치할 예정.
