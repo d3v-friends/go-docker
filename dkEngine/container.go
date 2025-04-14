@@ -13,7 +13,7 @@ import (
 )
 
 type CreateContainerArgs struct {
-	args          *CreateContainerRequest
+	Args          *CreateContainerRequest
 	platform      Platform
 	containerName string
 	networkName   string
@@ -26,7 +26,7 @@ func NewCreateContainerArgs(
 	platform Platform,
 ) *CreateContainerArgs {
 	return &CreateContainerArgs{
-		args: &CreateContainerRequest{
+		Args: &CreateContainerRequest{
 			Cmd:      nil,
 			Hostname: nil,
 			User:     nil,
@@ -67,7 +67,7 @@ func NewCreateContainerArgs(
 }
 
 func (x *CreateContainerArgs) Body() ([]byte, error) {
-	return json.Marshal(x.args)
+	return json.Marshal(x.Args)
 }
 
 func (x *CreateContainerArgs) AppendVolumeBinds(
@@ -79,11 +79,11 @@ func (x *CreateContainerArgs) AppendVolumeBinds(
 	if len(options) == 1 {
 		args = fmt.Sprintf("%s:%s", args, options[0].String())
 	}
-	x.args.HostConfig.Binds = append(x.args.HostConfig.Binds, args)
+	x.Args.HostConfig.Binds = append(x.Args.HostConfig.Binds, args)
 }
 
 func (x *CreateContainerArgs) AppendEnv(key, value string) {
-	x.args.Env = append(x.args.Env, fmt.Sprintf("%s=%s", key, value))
+	x.Args.Env = append(x.Args.Env, fmt.Sprintf("%s=%s", key, value))
 }
 
 func (x *CreateContainerArgs) AppendPortBind(
@@ -91,27 +91,27 @@ func (x *CreateContainerArgs) AppendPortBind(
 	container uint64,
 ) {
 	var hostPort = fnPointer.Make(fmt.Sprintf("%d", host))
-	x.args.HostConfig.PortBindings[fmt.Sprintf("%d/tcp", container)] = []*PortBinding{
+	x.Args.HostConfig.PortBindings[fmt.Sprintf("%d/tcp", container)] = []*PortBinding{
 		{HostIp: fnPointer.Make("0.0.0.0"), HostPort: hostPort},
 		{HostIp: fnPointer.Make("::"), HostPort: hostPort},
 	}
-	x.args.ExposedPorts[fmt.Sprintf("%d/tcp", host)] = map[string]string{}
+	x.Args.ExposedPorts[fmt.Sprintf("%d/tcp", host)] = map[string]string{}
 }
 
 func (x *CreateContainerArgs) SetCmd(cmd []string) {
-	x.args.Cmd = cmd
+	x.Args.Cmd = cmd
 }
 
 func (x *CreateContainerArgs) SetPrivileged(v bool) {
-	x.args.HostConfig.Privileged = fnPointer.Make(v)
+	x.Args.HostConfig.Privileged = fnPointer.Make(v)
 }
 
 func (x *CreateContainerArgs) SetNetworkMode(mode string) {
-	x.args.HostConfig.NetworkMode = fnPointer.Make(mode)
+	x.Args.HostConfig.NetworkMode = fnPointer.Make(mode)
 }
 
 func (x *CreateContainerArgs) SetLogConfig(config *LogConfig) {
-	x.args.HostConfig.LogConfig = config
+	x.Args.HostConfig.LogConfig = config
 }
 
 /* ------------------------------------------------------------------------------------------------------------ */
