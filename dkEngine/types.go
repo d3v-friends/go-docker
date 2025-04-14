@@ -29,7 +29,7 @@ func (x Platform) String() string {
 }
 
 type Network struct {
-	Name       string         `json:"ContainerName"`
+	Name       string         `json:"Name"`
 	Id         string         `json:"Tag"`
 	Created    time.Time      `json:"Created"`
 	Scope      string         `json:"Scope"`
